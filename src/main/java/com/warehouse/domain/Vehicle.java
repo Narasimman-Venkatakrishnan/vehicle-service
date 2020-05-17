@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Vehicle {
+public class Vehicle implements Comparable<Vehicle> {
 
     @Id
     private String _id;
@@ -73,5 +73,10 @@ public class Vehicle {
 
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    @Override
+    public int compareTo(Vehicle o) {
+        return getDateAdded().compareTo(o.getDateAdded());
     }
 }
