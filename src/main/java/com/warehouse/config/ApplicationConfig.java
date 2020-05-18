@@ -1,6 +1,7 @@
 package com.warehouse.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +16,12 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class ApplicationConfig extends WebSecurityConfigurerAdapter {
 
     private SecurityConfig securityConfig;
+
+    @Value("${spring.security.user.name}")
+    private String userName;
+
+    @Value("${spring.security.user.password}")
+    private String password;
 
     @Autowired
     public void setSecurityConfig(SecurityConfig securityConfig) {
@@ -33,10 +40,9 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter {
 
         User.UserBuilder users = User.withDefaultPasswordEncoder();
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("wareHouseUserName").password("wareHouseUserPass").roles("USER").build());
+        manager.createUser(users.username(userName).password(password).roles("USER").build());
         manager.createUser(users.username("wareHouseAdmin").password("wareHouseAdminPass").roles("USER", "ADMIN").build());
         return manager;
-
     }
 
 }
