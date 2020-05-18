@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE, path = "/vehicles")
+@RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE, path = "/shopping/cart/vehicles")
 public class VehiclesController {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(VehiclesController.class);

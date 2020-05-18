@@ -24,7 +24,7 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/","/vehicles/**/").permitAll().anyRequest().authenticated();
         http.httpBasic().authenticationEntryPoint(securityConfig);
     }
 
